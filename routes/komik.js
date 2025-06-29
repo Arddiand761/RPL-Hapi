@@ -2,7 +2,6 @@ const Joi = require("joi");
 const {
   addKomikHandler,
   editKomikHandler,
-  addChapterHandler,
   getAllKomikHandler,
   getKomikByIdHandler,
   deleteKomikHandler,
@@ -47,22 +46,6 @@ module.exports = [
         }),
       },
       handler: editKomikHandler,
-    },
-  },
-  // Tambah chapter (admin)
-  {
-    method: "POST",
-    path: "/komik/{id}/chapter",
-    options: {
-      pre: [{ method: adminAuthMiddleware }],
-      validate: {
-        params: Joi.object({ id: Joi.number().integer().required() }),
-        payload: Joi.object({
-          judul: Joi.string().required(),
-          gambar: Joi.array().items(Joi.string().uri()).min(1).required(),
-        }),
-      },
-      handler: addChapterHandler,
     },
   },
   // Melihat semua komik (admin)

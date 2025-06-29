@@ -1,8 +1,8 @@
 // Validasi JWT untuk Hapi (gampang, cuma cek payload/jwt)
 module.exports = async function (decoded, request, h) {
-  // biasanya decoded adalah hasil decode JWT, misal { user_id, username }
+  // biasanya decoded adalah hasil decode JWT, misal { id, username }
   // bisa juga query user ke database jika mau validasi lebih lanjut
-  if (!decoded || !decoded.user_id) {
+  if (!decoded || !decoded.id) {
     return { isValid: false };
   }
 
